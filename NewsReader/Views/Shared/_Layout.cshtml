@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags -->
+    <title>@ViewBag.Title App | BBC example</title>
+    <meta name="keywords" content="News Reader App" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="~/Content/lightbox.css">
+
+    <!-- scripts -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/numscroller-1.0.js"></script>
+
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+
+    @*<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+
+    <style>
+        .modal-content {
+            width: 600px !important;
+            margin: 30px auto !important;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="agile-banner w3lshome" id="home">
+
+        <div class="navbar navbar-default navbar-fixed-top w3ls-navbar">
+            <div class="container brand1">
+                
+                <a href="#" class="navbar-brand w3-logo" @Html.ActionLink("News Reader", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- navbar collapse -->
+                <div class="collapse navbar-collapse navHeaderCollapse">
+                    <ul class="nav navbar-nav navbar-right w3ls-nav">
+                        <li class="scroll"><a class="scroll" @Html.ActionLink("Home", "Index", "Home")</a></li>
+                        <li class="scroll"><a class="scroll" @Html.ActionLink("Lorem", "Index", "Home")</a></li>
+                        <li class="scroll"><a class="scroll" @Html.ActionLink("Ipsum", "Index", "Home")</a></li>
+                        <li class="scroll"><a class="scroll" @Html.ActionLink("Dolor", "Index", "Home")</a></li>
+                        <li class="scroll"><a class="scroll" @Html.ActionLink("Sit", "Index", "Home")</a></li>
+
+                        <li><a class="scroll" href="#stats">Consectetur</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- navbar end-->
+        <div class="w3-banner-heading">
+            <h1>BBC News</h1>
+            <P>Latest Breaking News Now</P>
+        </div>
+    </div><!-- banner ends -->
+
+
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
+        @RenderBody()
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            // Initialize numeric spinner input boxes
+            //$(".numeric-spinner").spinedit();
+
+            // Initalize modal dialog
+            // attach modal-container bootstrap attributes to links with .modal-link class.
+            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+
+            //clear modal cache, so that new content can be loaded
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@model NewsReader.Models.ArticleModels
+
+<div class="container w3about">
+    <div class="about-img">
+        <img src="@Model.URLToImage" class="img-responsive" />
+    </div>
+    <div class="about-txt">
+        <h2>@Html.ActionLink(Model.Title, "ViewDetails", "Home", new { title = Model.Title }, new { @class = "modal-link" }) </h2>
+        <br>
+        <p>@Html.DisplayFor(model => model.PublishedAt)</p>
+        <br />
+        <p>@Html.DisplayFor(model => model.Description)</p>
+        @* <ul class="agile-list">
+
+            <li><span class="arrow">&RBarr;</span><a href="#about"> Expert Teaching Skills</a></li>
+            <li><span class="arrow">&RBarr;</span><a href="#about"> Cultural Activities</a></li>
+            <li><span class="arrow">&RBarr;</span><a href="#about"> Exclusive Tutorials</a></li>
+            <li><span class="arrow">&RBarr;</span><a href="#about"> National Level Training</a></li>
+                <!--<li><span class="arrow">&RBarr;</span><a href="#about"> Complete Lab Facility</a></li>
+                    <li><span class="arrow">&RBarr;</span><a href="#about"> Best Communication Skills</a></li> -->
+
+            </ul>*@
+    </div>
+</div>
+    @*<div class="panel panel-default">
+            <div class="panel-body">
+                <div class="panel-left">
+
+                    @Html.ActionLink(Model.Title, "ViewDetails", "Home", new { title = Model.Title }, new { @class = "modal-link" })
+
+                    <p>@Html.DisplayFor(model => model.PublishedAt)</p>
+
+                </div>
+            </div>
+        </div>*@

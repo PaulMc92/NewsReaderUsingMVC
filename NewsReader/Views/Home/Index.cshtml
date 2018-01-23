@@ -1,0 +1,191 @@
+﻿@model PagedList.IPagedList<NewsReader.Models.ArticleModels>
+@using PagedList.Mvc;
+
+
+<div class="w3ls-about" id="about">
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    @{
+        ViewBag.Title = "BBC News";
+    }
+    <div class="container topblurp doublecolumn">
+        <h1>Top Stories</h1>
+
+
+        @*<div id="sb-search" class="sb-search">
+                <form action="#" method="post">
+                    <input type="search" class="sb-search-input" name="Search" placeholder="Enter your search term..." id="search" required="">
+                    <input class="sb-search-submit" type="submit" value="">
+                    <span class="sb-icon-search"> </span>
+                </form>
+                <div class="clearfix"> </div>
+                <!-- search-scripts -->
+                <script src="js/classie.js"></script>
+                <script src="js/uisearch.js"></script>
+                <script>
+                                    new UISearch( document.getElementById( 'sb-search' ) );
+                </script>
+                <!-- //search-scripts -->
+            </div>*@
+    
+        <div id="sb-search" class="sb-search">
+            <form>
+                <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="SearchString" id="search">
+                <input class="sb-search-submit" type="submit" value="">
+                <span class="sb-icon-search"></span>
+            </form>
+        </div>
+    
+    @*</div>
+
+        <div class="container topblurp">*@
+
+
+
+
+            @*<div class="sb-search">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                        {
+                            @*<input type="search" class="sb-search-input" name="Search" placeholder="Enter your search term..." id="search" required="">
+                            <input class="sb-search-submit" type="submit" value="">
+                            <span class="sb-icon-search"> </span>
+                            <form action="#" method="post">
+                                <input type="search" class="sb-search-input" name="Search" placeholder="Enter your search term..." id="search" required="">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"> </span>
+                                </form>
+                                <!-- search-scripts -->
+                                <script src="~/Scripts/classie.js"></script>
+                                <script src="~/Scripts/uisearch.js"></script>
+                                <script>
+                                    new UISearch(document.getElementById('sb-search'));
+                                </script>
+                                <!-- //search-scripts -->
+                                @*<p>
+                                        Find by keyword: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                                        <span class="sb-icon-search"> </span>
+                                    </p>
+                                }
+            </div>*@
+
+
+
+
+
+            <span class="row">
+                <b>Sort By:</b>
+                @Html.ActionLink("Default", "Index", new { sortOrder = string.Empty, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Published Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </span>
+        </div>
+
+
+    @*<div class="container w3about">*@
+
+
+        @*@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <p>
+                Find by keyword: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Search" />
+            </p>
+        }*@
+
+
+
+
+        <br />
+        @foreach (var item in Model)
+            {
+            @Html.Partial("_Article", item)
+        }
+    <div class="container topblurp">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+    </div>
+    @*</div>*@
+</div>
+
+<div class="contact w3ls-contact" id="contact">
+    <div class="container w3-contact">
+        <div class="list1">
+            <ul class="contact-list">
+                <li class="heading"> Contact Us</li>
+                <li>02108 MA Boston</li>
+                <li>852-957-1879</li>
+                <li><a href="mailto:yourmailid@company.com">info@edumateltd.com</a></li>
+            </ul>
+
+            <ul class="contact-hrs">
+                <li class="heading">Our Timings</li>
+                <li>Monday - Saturday</li>
+                <li>09:00 AM - 06:30 PM</li>
+                <li>Weakly Special Class</li>
+                <li>Parents Meeting</li>
+            </ul>
+        </div>
+        <div class="list2">
+            <ul class="social-links">
+                <li class="heading">Follow Us </li>
+                <li><a href="facebook.com">Facebook</a></li>
+                <li><a href="twitter.com">Twitter</a></li>
+                <li><a href="pinterest.com">Pinterest</a></li>
+                <li><a href="plus.google.com">Google+ </a></li>
+            </ul>
+
+            <ul class="sub-scribe">
+                <li class="heading">Subscribe</li>
+                <li>
+                    <form action="/" method="post">
+                        <input type="email" name="email" placeholder="Enter Your E-Mail" required><br>
+                        <input type="submit" value="Subscribe"><br>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+    @*@model PagedList.IPagedList<NewsReader.Models.ArticleModels>
+    @using PagedList.Mvc;
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    @{
+        ViewBag.Title = "BBC News";
+    }
+    <h2>Top Stories</h2>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <p>
+            Find by keyword: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+    <span class="row">
+        <b>Sort By:</b>
+        @Html.ActionLink("Default", "Index", new { sortOrder = string.Empty, currentFilter = ViewBag.CurrentFilter })
+        @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        @Html.ActionLink("Published Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+    </span>
+    <ul class="list-group">
+        @foreach (var item in Model)
+            {
+            @Html.Partial("_Article", item)
+        }
+    </ul>
+
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+
+<script src="~/Scripts/classie.js"></script>
+<script src="~/Scripts/uisearch.js"></script>
+<script>
+			new UISearch( document.getElementById( 'sb-search' ) );
+</script>
